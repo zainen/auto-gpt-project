@@ -6,8 +6,10 @@ use crate::{apis::call_request::call_gpt, models::general::llm::Message};
 
 use super::command_line::PrintCommand;
 
-const CODE_TEMPLATE_PATH: &str = "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/src/code_template.rs";
-const EXEC_MAIN_PATH: &str = "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/src/main.rs";
+const CODE_TEMPLATE_PATH: &str =
+    "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/src/code_template.rs";
+const EXEC_MAIN_PATH: &str =
+    "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/src/main.rs";
 const API_SCHEMA_PATH: &str = "/home/zainensuzuki/code/rust/auto_gippity/schemas/api_schema.json";
 
 pub fn extend_ai_function(ai_func: fn(&str) -> &'static str, func_input: &str) -> Message {
