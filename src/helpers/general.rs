@@ -12,7 +12,7 @@ pub const WEB_SEVER_PROJECT_PATH: &str =
   "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/";
 pub const EXEC_MAIN_PATH: &str =
   "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/src/main.rs";
-const API_SCHEMA_PATH: &str = "/home/zainensuzuki/code/rust/auto_gippity/schemas/api_schema.json";
+const API_SCHEMA_PATH: &str = "/home/zainensuzuki/code/rust/auto-gippity-repo/auto_gippity/schemas/api_schema.json";
 
 pub fn extend_ai_function(ai_func: fn(&str) -> &'static str, func_input: &str) -> Message {
   let ai_function_str = ai_func(func_input);

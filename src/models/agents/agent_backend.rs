@@ -253,7 +253,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
           // check status code
           for endpoint in check_endpoints {
             // confirm url testing
-            let testing_msg: String = format!("Testing endpoing '{}'...", endpoint.route);
+            let testing_msg: String = format!("Testing endpoint '{}'...", endpoint.route);
             PrintCommand::UnitTest
               .print_agent_message(self.attributes.position.as_str(), testing_msg.as_str());
 
@@ -290,7 +290,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
 
           save_api_endpoints(&api_endpoints_str);
 
-          PrintCommand::Issue.print_agent_message(
+          PrintCommand::UnitTest.print_agent_message(
             self.attributes.position.as_str(),
             "Backend testing complete...",
           );
@@ -334,6 +334,8 @@ mod tests {
         "#;
 
     let mut factsheet: FactSheet = serde_json::from_str(factsheet_str).unwrap();
+
+    agent.attributes.state = AgentState::UnitTesting;
 
     agent
       .execute(&mut factsheet)
