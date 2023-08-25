@@ -78,8 +78,8 @@ impl AgentBackendDeveloper {
     let ai_response: String = ai_task_request(
       msg_context,
       &self.attributes.position,
-      get_function_string!(print_backend_webserver_code),
-      print_backend_webserver_code,
+      get_function_string!(print_improved_webserver_code),
+      print_improved_webserver_code,
     )
     .await;
 
@@ -319,15 +319,13 @@ mod tests {
 
     let factsheet_str = r#"
             {
-                "project_description": "build a website that only tracks and returns the time of day",
+                "project_description": "build a website that return the current time",
                 "project_scope": {
-                    "is_crud_required": true,
-                    "is_user_login_and_logout": true,
-                    "is_external_urls_required": true
+                    "is_crud_required": false,
+                    "is_user_login_and_logout": false,
+                    "is_external_urls_required": false
                 },
-                "external_urls": [
-                    "http://worldtimeapi.org/api/timezone"
-                ],
+                "external_urls": [],
                 "backend_code": null,
                 "api_endpoint_schema": null
             }
@@ -335,7 +333,7 @@ mod tests {
 
     let mut factsheet: FactSheet = serde_json::from_str(factsheet_str).unwrap();
 
-    agent.attributes.state = AgentState::UnitTesting;
+    agent.attributes.state = AgentState::Discovery;
 
     agent
       .execute(&mut factsheet)
