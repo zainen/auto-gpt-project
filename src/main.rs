@@ -1,8 +1,8 @@
 #[macro_export]
 macro_rules! get_function_string {
-    ($func: ident) => {
-        stringify!($func)
-    };
+  ($func: ident) => {
+    stringify!($func)
+  };
 }
 
 #[macro_use]
@@ -14,7 +14,7 @@ mod models;
 use helpers::command_line::get_user_response;
 
 fn main() {
-    let user_req: String = get_user_response("what webserver are we building today?");
+  let user_req: String = get_user_response("what webserver are we building today?");
 
-    dbg!(user_req);
+  dbg!(user_req);
 }
