@@ -1,19 +1,20 @@
 use reqwest::Client;
 use serde::de::DeserializeOwned;
 use std::fs;
+use dotenv::dotenv;
 
 use crate::{apis::call_request::call_gpt, models::general::llm::Message};
 
 use super::command_line::PrintCommand;
 
 const CODE_TEMPLATE_PATH: &str =
-  "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/src/code_template.rs";
+  "../web_template/src/code_template.rs";
 pub const WEB_SEVER_PROJECT_PATH: &str =
-  "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/";
+  "../web_template/";
 pub const EXEC_MAIN_PATH: &str =
-  "/home/zainensuzuki/code/rust/auto-gippity-repo/web_template/src/main.rs";
+  "../web_template/src/main.rs";
 const API_SCHEMA_PATH: &str =
-  "/home/zainensuzuki/code/rust/auto-gippity-repo/auto_gippity/schemas/api_schema.json";
+  "../auto_gippity/schemas/api_schema.json";
 
 pub fn extend_ai_function(ai_func: fn(&str) -> &'static str, func_input: &str) -> Message {
   let ai_function_str = ai_func(func_input);
@@ -82,6 +83,7 @@ pub async fn check_status_code(client: &Client, url: &str) -> Result<u16, reqwes
 
 // get code template
 pub fn read_code_template_contents() -> String {
+  dotenv().ok();
   let path: String = String::from(CODE_TEMPLATE_PATH);
   fs::read_to_string(path).expect("failed to read code template")
 }
@@ -129,5 +131,11 @@ mod tests {
 
     dbg!(&res);
     assert!(res.len() > 20);
+  }
+  
+  #[test]
+  fn test_read_code_template_contents() {
+    let msg = read_code_template_contents();
+    dbg!(&msg);
   }
 }
